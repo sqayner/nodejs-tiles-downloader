@@ -1,0 +1,20 @@
+{
+  "name": "tiles-downloader",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "async": "^3.2.0",
+    "npm": "^7.20.1",
+    "path": "^0.12.7",
+    "progress": "^2.0.3",
+    "request": "^2.88.2",
+    "yargs": "^17.0.1"
+  }
+}
