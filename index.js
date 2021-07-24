@@ -102,7 +102,7 @@ downloader.downloadFiles(tiles)
 function getTileCountFromZoom(zoom) {
     let tile = 1;
 
-    for (let z = 1; z < zoom; z++) {
+    for (let z = 0; z < zoom; z++) {
         tile = tile * 4
     }
     return tile;
