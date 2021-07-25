@@ -12,6 +12,7 @@ var maxZoom = argv.maxZoom === undefined || argv.maxZoom === "" || argv.maxZoom 
 var minZoom = argv.minZoom === undefined || argv.minZoom === "" || argv.minZoom !== parseInt(argv.minZoom, 10) ? 0 : argv.minZoom;
 
 var tileName = argv.tileName === undefined || argv.tileName === "" ? null : argv.tileName;
+var tileType = argv.tileType === undefined || argv.tileType === "" ? null : argv.tileType;
 
 var tilesUrl = argv.tilesUrl;
 
@@ -22,8 +23,13 @@ if (tilesUrl === undefined || tilesUrl === "") {
     process.exit()
 }
 
-if (tileName === undefined || tileName === "") {
+if (tileName === null) {
     console.log("tileName required")
+    process.exit()
+}
+
+if (tileType === null || (tileType !== "png" && tileType !== "jpg")) {
+    console.log("tileType required")
     process.exit()
 }
 
@@ -90,11 +96,11 @@ for (let index = minZoom; index < maxZoom; index++) {
     if (index > 0) {
         for (let x = 0; x < Math.sqrt(getTileCountFromZoom(index)); x++) {
             for (let y = 0; y < Math.sqrt(getTileCountFromZoom(index)); y++) {
-                tiles.push(tilesUrl + index + '/' + x + '/' + y + '.png')
+                tiles.push(tilesUrl + index + '/' + x + '/' + y + '.' + tileType)
             }
         }
     } else {
-        tiles.push(tilesUrl + index + '/0/0.png')
+        tiles.push(tilesUrl + index + '/0/0.' + tileType)
     }
 }
 downloader.downloadFiles(tiles)
